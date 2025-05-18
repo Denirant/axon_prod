@@ -1253,7 +1253,7 @@ def validate_cors_origin(origin):
 # CORS_ALLOW_ORIGIN=http://localhost:5173;http://localhost:8080
 # in your .env file depending on your frontend port, 5173 in this case.
 cors_origins_str = os.environ.get(
-    "CORS_ALLOW_ORIGIN", "http://localhost:5173;http://localhost:8080;http://192.168.0.6:5173"
+    CORS_ALLOW_ORIGIN="http://localhost:5173;http://localhost:8080;http://192.168.0.6:5173;http://axonai.tech;http://www.axonai.tech"
 )
 
 CORS_ALLOW_ORIGIN = cors_origins_str.split(";")
