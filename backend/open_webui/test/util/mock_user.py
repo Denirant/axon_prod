@@ -24,8 +24,8 @@ def mock_user(app: FastAPI, **kwargs):
     def create_user():
         user_parameters = {
             "id": "1",
-            "name": "John Doe",
-            "email": "john.doe@openwebui.com",
+            "name": "Daniel Latt",
+            "email": "kwbashid@gmail.com",
             "role": "user",
             "profile_image_url": "/user.png",
             "last_active_at": 1627351200,
