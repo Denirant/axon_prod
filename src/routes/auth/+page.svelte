@@ -208,7 +208,7 @@
 		if (($config?.features.auth_trusted_header ?? false) || $config?.features.auth === false) {
 			await signInHandler();
 		} else {
-			onboarding = true;
+			onboarding = $config?.onboarding ?? false;
 		}
 
 		if (triggerButton) {
@@ -227,7 +227,7 @@
 	bind:show={onboarding}
 	getStartedHandler={() => {
 		onboarding = false;
-		mode = 'signin';
+		mode = $config?.features.enable_ldap ? 'ldap' : 'signup';
 	}}
 />
 
@@ -346,18 +346,20 @@
 										{$i18n.t('Sign in')}
 									</button>
 
-									<div class="mt-4 text-sm text-center text-gray-600/80">
-										{$i18n.t('У вас нет аккаунта?')}
-										<button
-											class="font-medium underline text-gray-800/90 hover:text-gray-900"
-											type="button"
-											on:click={() => {
-												mode = 'signup';
-											}}
-										>
-											{$i18n.t('Создать')}
-										</button>
-									</div>
+									{#if $config?.features.enable_signup && !($config?.onboarding ?? false)}
+										<div class="mt-4 text-sm text-center text-gray-600/80">
+											{$i18n.t('У вас нет аккаунта?')}
+											<button
+												class="font-medium underline text-gray-800/90 hover:text-gray-900"
+												type="button"
+												on:click={() => {
+													mode = 'signup';
+												}}
+											>
+												{$i18n.t('Создать')}
+											</button>
+										</div>
+									{/if}
 								</div>
 							</form>
 						{:else if mode === 'signup'}
@@ -536,18 +538,20 @@
 										{$i18n.t('Создать')}
 									</button>
 
-									<div class="mt-4 text-sm text-center text-gray-600/80">
-										{$i18n.t('Уже есть аккаунт?')}
-										<button
-											class="font-medium underline text-gray-800/90 hover:text-gray-900"
-											type="button"
-											on:click={() => {
-												mode = 'signin';
-											}}
-										>
-											{$i18n.t('Sign in')}
-										</button>
-									</div>
+									{#if $config?.features.enable_signup && !($config?.onboarding ?? false)}
+										<div class="mt-4 text-sm text-center text-gray-600/80">
+											{$i18n.t('Уже есть аккаунт?')}
+											<button
+												class="font-medium underline text-gray-800/90 hover:text-gray-900"
+												type="button"
+												on:click={() => {
+													mode = 'signin';
+												}}
+											>
+												{$i18n.t('Sign in')}
+											</button>
+										</div>
+									{/if}
 								</div>
 							</form>
 						{/if}
