@@ -346,20 +346,18 @@
 										{$i18n.t('Sign in')}
 									</button>
 
-									{#if $config?.features.enable_signup && !($config?.onboarding ?? false)}
-										<div class="mt-4 text-sm text-center text-gray-600/80">
-											{$i18n.t('У вас нет аккаунта?')}
-											<button
-												class="font-medium underline text-gray-800/90 hover:text-gray-900"
-												type="button"
-												on:click={() => {
-													mode = 'signup';
-												}}
-											>
-												{$i18n.t('Создать')}
-											</button>
-										</div>
-									{/if}
+									<div class="mt-4 text-sm text-center text-gray-600/80">
+										{$i18n.t('У вас нет аккаунта?')}
+										<button
+											class="font-medium underline text-gray-800/90 hover:text-gray-900"
+											type="button"
+											on:click={() => {
+												mode = 'signup';
+											}}
+										>
+											{$i18n.t('Создать')}
+										</button>
+									</div>
 								</div>
 							</form>
 						{:else if mode === 'signup'}
@@ -538,20 +536,18 @@
 										{$i18n.t('Создать')}
 									</button>
 
-									{#if $config?.features.enable_signup && !($config?.onboarding ?? false)}
-										<div class="mt-4 text-sm text-center text-gray-600/80">
-											{$i18n.t('Уже есть аккаунт?')}
-											<button
-												class="font-medium underline text-gray-800/90 hover:text-gray-900"
-												type="button"
-												on:click={() => {
-													mode = 'signin';
-												}}
-											>
-												{$i18n.t('Sign in')}
-											</button>
-										</div>
-									{/if}
+									<div class="mt-4 text-sm text-center text-gray-600/80">
+										{$i18n.t('Уже есть аккаунт?')}
+										<button
+											class="font-medium underline text-gray-800/90 hover:text-gray-900"
+											type="button"
+											on:click={() => {
+												mode = 'signin';
+											}}
+										>
+											{$i18n.t('Sign in')}
+										</button>
+									</div>
 								</div>
 							</form>
 						{/if}
